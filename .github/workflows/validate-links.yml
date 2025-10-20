@@ -29,10 +29,7 @@ jobs:
       run: |
         markdown-link-check README.md \
           --config .github/workflows/link-check-config.json \
-          --verbose \
-          --retry \
-          --retry-delay 5000 \
-          --retry-count 3
+          --verbose
           
     - name: Check for broken links
       run: |
