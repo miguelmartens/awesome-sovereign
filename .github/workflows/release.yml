@@ -65,6 +65,7 @@ jobs:
         markdown-link-check README.md --config .github/workflows/link-check-config.json --quiet
         
     - name: Create Release
+      id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
