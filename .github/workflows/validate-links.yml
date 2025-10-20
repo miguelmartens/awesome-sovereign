@@ -1,0 +1,72 @@
+name: Validate Links
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    # Run weekly on Sundays at 2 AM UTC
+    - cron: '0 2 * * 0'
+
+jobs:
+  validate-links:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install markdown-link-check
+      run: npm install -g markdown-link-check
+      
+    - name: Validate links in README
+      run: |
+        markdown-link-check README.md \
+          --config .github/workflows/link-check-config.json \
+          --verbose \
+          --retry \
+          --retry-delay 5000 \
+          --retry-count 3
+          
+    - name: Check for broken links
+      run: |
+        if [ -f link-check-results.json ]; then
+          echo "Checking for broken links..."
+          python3 << 'EOF'
+        import json
+        import sys
+        
+        try:
+            with open('link-check-results.json', 'r') as f:
+                results = json.load(f)
+            
+            broken_links = []
+            for result in results:
+                if result['status'] != 'OK':
+                    broken_links.append({
+                        'url': result['link'],
+                        'status': result['status'],
+                        'error': result.get('error', 'Unknown error')
+                    })
+            
+            if broken_links:
+                print("❌ Found broken links:")
+                for link in broken_links:
+                    print(f"  - {link['url']} ({link['status']})")
+                sys.exit(1)
+            else:
+                print("✅ All links are working!")
+                
+        except FileNotFoundError:
+            print("No link check results found")
+        except Exception as e:
+            print(f"Error processing results: {e}")
+            sys.exit(1)
+        EOF
+        fi

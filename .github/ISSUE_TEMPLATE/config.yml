@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Community Discussions
+    url: https://github.com/your-username/awesome-sovereign/discussions
+    about: Ask questions, share ideas, and discuss sovereign cloud topics with the community
+  - name: 📚 Documentation
+    url: https://github.com/your-username/awesome-sovereign/blob/main/CONTRIBUTING.md
+    about: Learn how to contribute to the awesome-sovereign list
+  - name: 🐛 Report a Bug
+    url: https://github.com/your-username/awesome-sovereign/issues/new?template=issue_template.yml
+    about: Report broken links, incorrect information, or other issues
+  - name: ✨ Request a Feature
+    url: https://github.com/your-username/awesome-sovereign/issues/new?template=feature_request.yml
+    about: Suggest new features or improvements for the list
+  - name: 🆕 Suggest New Addition
+    url: https://github.com/your-username/awesome-sovereign/issues/new?template=new_addition.yml
+    about: Suggest new tools, services, or resources to add to the list

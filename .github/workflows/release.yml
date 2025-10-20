@@ -1,0 +1,86 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Generate changelog
+      run: |
+        # Generate changelog from git history
+        echo "# Changelog" > CHANGELOG.md
+        echo "" >> CHANGELOG.md
+        echo "All notable changes to this project will be documented in this file." >> CHANGELOG.md
+        echo "" >> CHANGELOG.md
+        
+        # Get the latest tag
+        LATEST_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+        
+        if [ -n "$LATEST_TAG" ]; then
+          echo "## [Unreleased]" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          
+          # Get commits since last tag
+          git log --pretty=format:"- %s (%h)" $LATEST_TAG..HEAD >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+        fi
+        
+        echo "## [${GITHUB_REF_NAME}] - $(date +%Y-%m-%d)" >> CHANGELOG.md
+        echo "" >> CHANGELOG.md
+        
+        # Get commits for this release
+        if [ -n "$LATEST_TAG" ]; then
+          git log --pretty=format:"- %s (%h)" $LATEST_TAG..HEAD >> CHANGELOG.md
+        else
+          git log --pretty=format:"- %s (%h)" --reverse >> CHANGELOG.md
+        fi
+        
+        echo "" >> CHANGELOG.md
+        echo "---" >> CHANGELOG.md
+        echo "" >> CHANGELOG.md
+        
+        # Add previous releases if they exist
+        if [ -n "$LATEST_TAG" ]; then
+          git log --pretty=format:"## [%D] - %ad" --date=short --grep="^v[0-9]" --max-count=10 >> CHANGELOG.md
+        fi
+        
+    - name: Validate links before release
+      run: |
+        npm install -g markdown-link-check
+        markdown-link-check README.md --config .github/workflows/link-check-config.json --quiet
+        
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body_path: CHANGELOG.md
+        draft: false
+        prerelease: false
+        
+    - name: Upload changelog as asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./CHANGELOG.md
+        asset_name: CHANGELOG.md
+        asset_content_type: text/markdown

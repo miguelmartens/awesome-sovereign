@@ -1,0 +1,71 @@
+name: 💬 General Discussion
+description: Start a general discussion about sovereign cloud, open source, or European alternatives
+title: "[DISCUSSION] "
+labels: ["discussion", "community"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome to the Awesome Sovereign Cloud community! This is a space for general discussions about sovereign cloud, open source alternatives, European cloud providers, and digital sovereignty.
+
+  - type: dropdown
+    id: discussion-type
+    attributes:
+      label: Discussion Type
+      description: What type of discussion are you starting?
+      options:
+        - General question about sovereign cloud
+        - Tool comparison or recommendation
+        - Best practices discussion
+        - Industry trends and news
+        - Technical implementation questions
+        - Community feedback
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: discussion-topic
+    attributes:
+      label: Discussion Topic
+      description: What would you like to discuss?
+      placeholder: Describe the topic you'd like to discuss with the community...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide any relevant context or background information
+      placeholder: Share any relevant context, use cases, or background information...
+
+  - type: textarea
+    id: questions
+    attributes:
+      label: Specific Questions
+      description: What specific questions do you have for the community?
+      placeholder: List any specific questions you'd like the community to help answer...
+
+  - type: checkboxes
+    id: guidelines
+    attributes:
+      label: Community Guidelines
+      description: Please confirm you've read and agree to follow our community guidelines
+      options:
+        - label: I have read and agree to follow the Code of Conduct
+          required: true
+        - label: I will be respectful and constructive in my contributions
+          required: true
+        - label: I will search existing discussions before posting to avoid duplicates
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Additional Information
+
+        Feel free to share any additional information, links, or resources that might be helpful for the discussion.
+
+        Thank you for contributing to the Awesome Sovereign Cloud community! 🚀

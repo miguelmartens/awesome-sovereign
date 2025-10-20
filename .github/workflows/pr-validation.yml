@@ -1,0 +1,161 @@
+name: PR Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  pr-validation:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Validate PR title
+      run: |
+        # Check if PR title follows conventional commits or is descriptive
+        PR_TITLE="${{ github.event.pull_request.title }}"
+        if [[ ! "$PR_TITLE" =~ ^(feat|fix|docs|style|refactor|test|chore|add|update|remove|improve|fix): ]] && [[ ${#PR_TITLE} -lt 10 ]]; then
+          echo "❌ PR title should be more descriptive or follow conventional commit format"
+          echo "Current title: $PR_TITLE"
+          echo "Examples: 'Add new European cloud provider' or 'feat: add Hetzner Cloud to providers list'"
+          exit 1
+        fi
+        echo "✅ PR title looks good"
+        
+    - name: Check for broken links in changes
+      run: |
+        # Get changed files
+        CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep -E '\.(md|txt)$' || true)
+        
+        if [ -n "$CHANGED_FILES" ]; then
+          echo "Checking links in changed files: $CHANGED_FILES"
+          
+          # Install markdown-link-check if not already installed
+          if ! command -v markdown-link-check &> /dev/null; then
+            npm install -g markdown-link-check
+          fi
+          
+          # Check links in each changed markdown file
+          for file in $CHANGED_FILES; do
+            if [ -f "$file" ]; then
+              echo "Checking links in $file"
+              markdown-link-check "$file" --config .github/workflows/link-check-config.json --quiet
+            fi
+          done
+        else
+          echo "No markdown files changed"
+        fi
+        
+    - name: Validate markdown formatting
+      run: |
+        # Check for common markdown formatting issues
+        CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep -E '\.(md)$' || true)
+        
+        if [ -n "$CHANGED_FILES" ]; then
+          for file in $CHANGED_FILES; do
+            if [ -f "$file" ]; then
+              echo "Validating markdown formatting in $file"
+              
+              # Check for trailing whitespace
+              if grep -q '[[:space:]]$' "$file"; then
+                echo "❌ Found trailing whitespace in $file"
+                exit 1
+              fi
+              
+              # Check for proper list formatting
+              if grep -q '^[[:space:]]*-[[:space:]]*$' "$file"; then
+                echo "❌ Found empty list items in $file"
+                exit 1
+              fi
+              
+              echo "✅ Markdown formatting looks good for $file"
+            fi
+          done
+        fi
+        
+    - name: Auto-label PR
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: pr } = context.payload.pull_request;
+          const changedFiles = await github.rest.pulls.listFiles({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: pr.number,
+          });
+          
+          const labels = [];
+          
+          // Check file types and content to determine labels
+          for (const file of changedFiles.data) {
+            if (file.filename.includes('README.md')) {
+              labels.push('documentation');
+            }
+            if (file.filename.includes('.github/')) {
+              labels.push('github');
+            }
+            if (file.filename.includes('LICENSE')) {
+              labels.push('legal');
+            }
+            if (file.filename.includes('CONTRIBUTING')) {
+              labels.push('documentation');
+            }
+            if (file.filename.includes('CODE_OF_CONDUCT')) {
+              labels.push('community');
+            }
+          }
+          
+          // Check PR title and description for content type
+          const title = pr.title.toLowerCase();
+          const body = pr.body?.toLowerCase() || '';
+          
+          if (title.includes('add') || body.includes('add')) {
+            labels.push('addition');
+          }
+          if (title.includes('fix') || title.includes('update') || body.includes('fix') || body.includes('update')) {
+            labels.push('update');
+          }
+          if (title.includes('remove') || body.includes('remove')) {
+            labels.push('removal');
+          }
+          
+          // Add labels if any were determined
+          if (labels.length > 0) {
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              labels: labels,
+            });
+          }
+          
+    - name: Comment on PR
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: pr } = context.payload.pull_request;
+          
+          const comment = `## 🤖 Automated PR Validation
+          
+          ✅ **PR Title**: Looks good!
+          ✅ **Markdown Formatting**: Validated
+          ✅ **Links**: Checked for broken links
+          
+          ### 📋 Next Steps
+          - [ ] Review the changes carefully
+          - [ ] Ensure all links are working
+          - [ ] Verify the content aligns with our [Contributing Guidelines](CONTRIBUTING.md)
+          - [ ] Check that new additions follow our quality standards
+          
+          Thank you for contributing to Awesome Sovereign Cloud! 🚀`;
+          
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: pr.number,
+            body: comment,
+          });

@@ -1,0 +1,43 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^https://github.com/your-username/"
+    },
+    {
+      "pattern": "^https://example.com"
+    },
+    {
+      "pattern": "^https://placeholder.com"
+    }
+  ],
+  "replacementPatterns": [
+    {
+      "pattern": "^https://github.com/your-username/awesome-sovereign",
+      "replacement": "https://github.com/actual-username/awesome-sovereign"
+    }
+  ],
+  "httpHeaders": [
+    {
+      "urls": ["https://github.com"],
+      "headers": {
+        "User-Agent": "awesome-sovereign-link-checker"
+      }
+    },
+    {
+      "urls": ["https://gitlab.com"],
+      "headers": {
+        "User-Agent": "awesome-sovereign-link-checker"
+      }
+    },
+    {
+      "urls": ["https://*.redhat.com"],
+      "headers": {
+        "User-Agent": "awesome-sovereign-link-checker"
+      }
+    }
+  ],
+  "timeout": "30s",
+  "retryOn429": true,
+  "retryCount": 3,
+  "fallbackRetryDelay": "5s"
+}
