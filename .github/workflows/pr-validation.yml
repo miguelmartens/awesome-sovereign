@@ -36,7 +36,7 @@ jobs:
           
           # Install markdown-link-check if not already installed
           if ! command -v markdown-link-check &> /dev/null; then
-            npm install -g markdown-link-check
+            npm install -g markdown-link-check@latest
           fi
           
           # Check links in each changed markdown file

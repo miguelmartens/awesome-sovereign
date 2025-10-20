@@ -60,7 +60,7 @@
 - [ ] **Content is accurate**: Information is correct and up-to-date
 - [ ] **Categorization is appropriate**: Items are placed in the most relevant section
 - [ ] **Description is clear**: Each entry has a clear, concise description
-- [ ] **Follows guidelines**: Changes align with our [Contributing Guidelines](CONTRIBUTING.md)
+- [ ] **Follows guidelines**: Changes align with our [Contributing Guidelines](https://github.com/your-username/awesome-sovereign/blob/main/CONTRIBUTING.md)
 - [ ] **No duplicates**: New items don't duplicate existing entries
 - [ ] **Quality standards**: Items meet our quality requirements
 
