@@ -86,6 +86,7 @@ If it increases **digital autonomy** (technical, operational, legal), it likely 
 - **k3s** – Lightweight K8s for edge/IoT: <https://k3s.io/>
 - **RKE/RKE2** – Rancher Kubernetes: <https://www.rancher.com/products/rke>
 - **Talos Linux** – OS for Kubernetes: <https://www.talos.dev/>
+- **Kairos** – Immutable Linux meta-distribution: <https://kairos.io/>
 
 ### Storage & Data
 - **Ceph** – Distributed storage: <https://ceph.io/>
