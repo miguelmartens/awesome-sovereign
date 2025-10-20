@@ -1,6 +1,6 @@
 # Awesome Sovereign [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-> A curated list of resources, projects, and providers that enable **Sovereign Cloud** and **digital autonomy**—with a strong focus on **Europe**, **open source**, **privacy**, **interoperability**, and **reduced dependency on hyperscalers**.
+> A curated list of resources, projects, and providers that enable **Sovereign Cloud** and **digital autonomy**—with a strong focus on **Europe**, **open source**, **cloud native**, **privacy**, **interoperability**, and **reduced dependency on hyperscalers**.
 
 Inspired by [sindresorhus/awesome](https://github.com/sindresorhus/awesome). PRs welcome!
 
@@ -69,6 +69,7 @@ If it increases **digital autonomy** (technical, operational, legal), it likely 
 - **OVHcloud** – <https://www.ovhcloud.com/>
 - **Scaleway** – <https://www.scaleway.com/>
 - **STACKIT** – <https://www.stackit.de/en/>
+- **Hostinger** - <https://www.hostinger.com/>
 
 ---
 
