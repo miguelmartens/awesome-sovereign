@@ -56,6 +56,7 @@ If it increases **digital autonomy** (technical, operational, legal), it likely 
 
 - **Gaia-X** – Federated, secure European data infrastructure: <https://gaia-x.eu/>
 - **NeoNephos (LF Europe)** – Programs/projects for digital autonomy: <https://neonephos.org/>
+- **Sovereign Cloud Stack (SCS)** – Standardized, open source cloud platform: <https://scs.community/>
 
 ---
 
