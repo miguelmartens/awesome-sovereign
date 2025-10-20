@@ -1,0 +1,95 @@
+name: ❓ Q&A
+description: Ask a question about sovereign cloud, tools, or best practices
+title: "[Q&A] "
+labels: ["question", "help"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about sovereign cloud, open source tools, or best practices? This is the place to ask!
+
+  - type: dropdown
+    id: question-category
+    attributes:
+      label: Question Category
+      description: What category does your question fall into?
+      options:
+        - Cloud providers and services
+        - Infrastructure as Code
+        - Container platforms and Kubernetes
+        - Security and privacy
+        - Monitoring and observability
+        - Development tools and CI/CD
+        - Data and analytics
+        - Networking and storage
+        - Best practices and architecture
+        - Tool recommendations
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Ask your question here...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide any relevant context about your situation
+      placeholder: Share any relevant context, constraints, or background information...
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      description: How urgent is this question?
+      options:
+        - Low - Just curious
+        - Medium - Would like to know soon
+        - High - Blocking my work
+        - Critical - Need immediate help
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-tried
+    attributes:
+      label: What have you tried?
+      description: What have you already tried or researched?
+      placeholder: Describe what you've already tried, researched, or considered...
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Any other relevant information that might help others answer your question
+      placeholder: Share any additional details, links, or resources...
+
+  - type: checkboxes
+    id: guidelines
+    attributes:
+      label: Community Guidelines
+      description: Please confirm you've read and agree to follow our community guidelines
+      options:
+        - label: I have read and agree to follow the Code of Conduct
+          required: true
+        - label: I will be respectful and constructive in my contributions
+          required: true
+        - label: I have searched existing discussions and issues before posting
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Additional Information
+
+        Feel free to share any additional information, screenshots, or resources that might help others answer your question.
+
+        Thank you for asking questions and helping build the Awesome Sovereign Cloud community! 🚀

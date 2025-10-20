@@ -1,0 +1,162 @@
+name: 🆕 New Addition
+description: Suggest a new tool, service, or resource for the awesome-sovereign list
+title: "[NEW] "
+labels: ["new-addition", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new addition to Awesome Sovereign Cloud! Please fill out the form below to help us evaluate your suggestion.
+
+  - type: input
+    id: tool-name
+    attributes:
+      label: Tool/Service Name
+      description: What is the name of the tool, service, or resource?
+      placeholder: Example: Hetzner Cloud
+    validations:
+      required: true
+
+  - type: input
+    id: tool-url
+    attributes:
+      label: Tool/Service URL
+      description: What is the official URL of the tool or service?
+      placeholder: https://www.hetzner.com/cloud
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Suggested Category
+      description: Which category should this be added to?
+      options:
+        - Cloud Providers
+        - Infrastructure as Code
+        - Container Platforms
+        - Kubernetes Distributions
+        - Edge Computing
+        - Storage Solutions
+        - Networking
+        - Security & Privacy
+        - Monitoring & Observability
+        - Development Tools
+        - AI/ML Platforms
+        - Data & Analytics
+        - Identity & Access Management
+        - Communication & Collaboration
+        - Ecosystem Organizations
+        - Standards & Frameworks
+        - Learning Resources
+        - News & Updates
+        - New Category (please specify)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please provide a clear and concise description of what this tool/service does
+      placeholder: Brief description of what the tool does and why it's relevant to sovereign cloud...
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-relevant
+    attributes:
+      label: Why is this relevant to sovereign cloud?
+      description: How does this tool/service support digital sovereignty, open source, or European alternatives?
+      placeholder: Explain how this tool supports our mission...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: open-source
+    attributes:
+      label: Is this open source?
+      description: Is this tool/service open source?
+      options:
+        - Yes, fully open source
+        - Yes, with open source components
+        - No, but has open source alternatives
+        - No, proprietary but relevant
+        - Unknown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: european-based
+    attributes:
+      label: Is this European-based or European-focused?
+      description: Is this tool/service based in Europe or focused on European market?
+      options:
+        - Yes, European company/organization
+        - Yes, European-focused but global
+        - No, but supports European sovereignty
+        - No, but reduces vendor lock-in
+        - Unknown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: maintenance-status
+    attributes:
+      label: Maintenance Status
+      description: What is the maintenance status of this tool/service?
+      options:
+        - Actively maintained
+        - Recently maintained (within 6 months)
+        - Occasionally maintained
+        - No recent updates
+        - Unknown
+    validations:
+      required: true
+
+  - type: textarea
+    id: key-features
+    attributes:
+      label: Key Features
+      description: What are the key features or benefits of this tool/service?
+      placeholder: List the main features or benefits...
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Are there any alternatives to this tool/service already in our list?
+      placeholder: List any similar tools already in the list...
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Any additional information that might be helpful
+      placeholder: Pricing, documentation, community size, etc....
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have verified that this tool/service is not already in the list
+          required: true
+        - label: I have checked that all links are working
+          required: true
+        - label: I have verified that this aligns with our mission
+          required: true
+        - label: I am willing to help maintain this entry if needed
+          required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Additional Information
+
+        If you have any additional information, documentation, or context that might help us evaluate this addition, please include it below.
+
+        Thank you for helping expand Awesome Sovereign Cloud! 🚀

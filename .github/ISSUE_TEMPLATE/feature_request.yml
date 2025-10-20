@@ -1,0 +1,115 @@
+name: ✨ Feature Request
+description: Suggest a new feature or improvement for the awesome-sovereign list
+title: "[FEATURE] "
+labels: ["enhancement", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature for Awesome Sovereign Cloud! Please fill out the form below to help us understand your request.
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature are you requesting?
+      options:
+        - New category/section
+        - New tool or service
+        - New resource or documentation
+        - Improvement to existing content
+        - Automation or workflow improvement
+        - Documentation enhancement
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: Please provide a clear and concise description of the feature you'd like to see
+      placeholder: Describe the feature you'd like to see added...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: Describe the problem or need this feature would address...
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like this feature to work?
+      placeholder: Describe your proposed solution or approach...
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What alternatives have you considered?
+      placeholder: Describe any alternative solutions or approaches you've considered...
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would be helpful
+        - High - Important for my use case
+        - Critical - Blocking my workflow
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: How would this feature be used?
+      placeholder: Describe specific use cases or scenarios where this feature would be helpful...
+
+  - type: input
+    id: related-tools
+    attributes:
+      label: Related Tools/Services
+      description: Are there any specific tools, services, or resources this feature relates to?
+      placeholder: List any related tools or services...
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the feature request here
+      placeholder: Any additional information that might be helpful...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have verified that this feature aligns with the awesome-sovereign mission
+          required: true
+        - label: I have provided all the requested information
+          required: true
+        - label: I am willing to help implement this feature if needed
+          required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Additional Information
+
+        If you have any additional information, mockups, examples, or context that might help us understand your feature request better, please include it below.
+
+        Thank you for helping improve Awesome Sovereign Cloud! 🚀
