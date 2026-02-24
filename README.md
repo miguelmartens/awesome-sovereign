@@ -71,6 +71,7 @@ If it increases **digital autonomy** (technical, operational, legal), it likely 
 - **Scaleway** – <https://www.scaleway.com/>
 - **STACKIT** – <https://www.stackit.de/en/>
 - **Hostinger** - <https://www.hostinger.com/>
+- **Thalassa Cloud** - <https://thalassa.cloud/>
 
 ---
 
