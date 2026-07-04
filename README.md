@@ -46,6 +46,7 @@ If it increases **digital autonomy** (technical, operational, legal), it likely 
 ## Ecosystem Maps & Directories
 
 - **NeoNephos** – Linux Foundation Europe initiative advancing cloud-native sovereignty: <https://neonephos.org/>
+- **EU Vetted** – Directory of EU and privacy-first SaaS alternatives, with verified hosting, sub-processors and CLOUD Act exposure per tool: <https://euvetted.com/>
 - **European Alternatives** – Directory of EU alternatives to common digital services: <https://european-alternatives.eu/>
 - **OpenAlternative** – Open source alternatives to popular SaaS: <https://openalternative.co/>
 - **Privacy Guides** – Community-maintained privacy tools & how-tos: <https://www.privacyguides.org/en/>
