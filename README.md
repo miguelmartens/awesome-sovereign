@@ -123,6 +123,7 @@ If it increases **digital autonomy** (technical, operational, legal), it likely 
 ### GitOps, CI/CD & Release Engineering
 - **Flux** – GitOps for K8s: <https://fluxcd.io/>
 - **Argo CD** – GitOps continuous delivery: <https://argo-cd.readthedocs.io/>
+- **Codebahn** – Managed Git & CI, EU-only sub-processors: <https://codebahn.net/>
 - **Tekton** – K8s-native pipelines: <https://tekton.dev/>
 - **Woodpecker CI** – Lightweight CI: <https://woodpecker-ci.org/>
 - **Drone** – Container-native CI: <https://www.drone.io/>
